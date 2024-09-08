@@ -20,16 +20,10 @@ export default class Cart {
     }
 
     priceWithDiscountCounter(discount :number): number {
-        let actualPrice: number = this.priceCounter();
-        let actualPriceWithDiscount: number = (actualPrice * (100 - discount)) / 100;
-        return actualPriceWithDiscount;
+        return (this.priceCounter() * (100 - discount)) / 100;
     }
 
     deleteProductWithId(id: number){
-        for (let product of this._items) {
-            if (product.id === id) {
-                this._items.splice(this._items.indexOf(product), 1);
-            } 
-        }
+        this._items = this._items.filter(product => product.id !== id);
     }
 }
